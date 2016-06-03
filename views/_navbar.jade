@@ -1,0 +1,22 @@
+header
+  if no_nav == false
+    nav.top-nav
+      .container
+        .nav-wrapper
+          a.page-title #{page}
+  .container
+    a.button-collapse.top-nav(href='/', data-activates='nav-mobile', class=(no_nav == false ? "full hide-on-large-only" : "" + "waves-effect waves-light circle hide-on-large-only"))
+      i.mdi-navigation-menu
+  ul#nav-mobile.side-nav.fixed
+    .image-container
+      img(src='images/ibm-watson.png')
+    li.bold
+      a.waves-effect.waves-teal(href='/') Getting Started
+    li.bold
+      a.waves-effect.waves-teal(href='/work_flow') Work-flow
+    li.bold
+      a.waves-effect.waves-teal(href='/dataset') Data set
+    li.bold
+      a.waves-effect.waves-teal(href='/things_we_used') Things we used
+    li.bold
+      a.waves-effect.waves-teal(href='/future') Future

@@ -1,0 +1,461 @@
+script(type='text/javascript').
+    var name_is = !{JSON.stringify(nameis)}
+    var one =!{JSON.stringify(open)}
+    console.log(one);
+    var two =!{JSON.stringify(conn)}
+    console.log(two);
+        var three =!{JSON.stringify(extn)}
+    console.log(three);
+        var four =!{JSON.stringify(agrn)}
+    console.log(four);
+        var five =!{JSON.stringify(neun)}
+    console.log(five);
+      var radarChartData = {
+      labels: ["Openness", "Conscientiousness", "Extraversion", "Agreeableness", "Emotional range"],
+      datasets: [
+      {
+      label: "My Second dataset",
+      fillColor: "rgba(151,187,205,0.2)",
+      strokeColor: "rgba(151,187,205,1)",
+      pointColor: "rgba(151,187,205,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(151,187,205,1)",
+      data: [one*100,two*100,three*100,four*100,five*100]
+      }
+      ]
+      };
+      window.onload = function(){
+      window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
+      responsive: true
+      });
+      }
+
+script.
+      var movie_genre_p = "";
+      var music_genre_p = "";
+      var book_genre_p = "";    
+      var movie = 1;
+      var music = 1;
+      var books = 1;
+      // result of pi
+      var openness = one*100;
+      var Conscientiousness = two*100;
+      var Extraversion = three*100;
+      var Agreeableness = four*100;
+      var Neu = five*100;
+      var oldbigfive = [];
+      // convert this result of [0, 100] into [1,5]
+      //NewValue = (((OldValue - OldMin) * (NewMax - NewMin)) / (OldMax - OldMin)) // + NewMin
+      var ope = ( (openness - 0) * (5 - 1) ) / (100 - 0) + 1;
+      oldbigfive.push(ope);
+      var con = ( (Conscientiousness - 0) * (5 - 1) ) / (100 - 0) + 1;
+      oldbigfive.push(con);
+      var ext = ( (Extraversion - 0) * (5 - 1 ) ) / (100 - 0) + 1;
+      oldbigfive.push(ext);
+      var agr = ( (Agreeableness - 0) * (5 - 1) ) / (100 - 0) + 1;
+      oldbigfive.push(agr);
+      var neu = ( (Neu - 0) * (5 - 1) ) / (100 - 0) + 1;
+      oldbigfive.push(neu);
+      if(movie == 1){
+      var chars = 1;
+      var arr = [];
+      var label = -1;
+      var arrope = [3.87, 3.91, 4.04, 3.95, 3.88, 4.27, 3.99, 4.15, 3.90, 4.31, 4.34, 4.13, 3.84, 3.99, 4.40, 3.82];
+      var arrcon = [3.45, 3.56, 3.22, 3.33, 3.44, 3.10, 3.43, 3.46, 3.38, 3.59, 3.35, 3.36, 3.48, 3.55, 3.34, 3.51];
+      var arrext = [3.57, 3.54, 3.26, 3.49, 3.58, 3.45, 3.66, 3.47, 3.52, 3.51, 3.33, 3.35, 3.62, 3.33, 3.27, 3.49];
+      var arragr = [3.58, 3.68, 3.35, 3.57, 3.60, 3.40, 3.60, 3.54, 3.47, 3.55, 3.37, 3.28, 3.62, 3.57, 3.52, 3.50];
+      var arrneu = [2.72, 2.61, 3.02, 2.81, 2.75, 3.16, 2.86, 2.81, 2.91, 2.69, 2.97, 2.73, 2.85, 2.73, 3.11, 2.71];
+      var bigfive = [];
+      var arraylength;
+      arraylength = arrope.length;
+      var i= 0, j = 0, k = 0, l = 0, m = 0;
+      for(k = 0; k < 5; k++){
+      if(k == 0){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrope[m];
+      chars = ope;
+      }
+      }
+      if(k == 1){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrcon[m];
+      chars = con;
+      }
+      }
+      if(k == 2){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrext[m];
+      chars = ext;
+      }
+      }
+      if(k == 3){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arragr[m];
+      chars = agr;
+      }
+      }
+      if(k == 4){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrneu[m];
+      chars = neu;
+      }
+      }
+      var diff = 10, d = 10;
+      //////console.log("Bigfive = \\n");
+      for(var i = 0; i < arraylength; i++){
+      d = chars - arr[i];
+      if(d < 0){
+      d = -1 * d;
+      }
+      if(d < diff){
+      diff = d;
+      //label = ope + i;   // name label ope+0/1/2-----
+      label = i;
+      }
+      }
+      bigfive.push(arr[label]);
+      //////console.log(chars +" " + arr[label] + "\\n");
+      }
+      var distance = 0, small = 256, irule = 0;
+      var i, j;
+      var bigf = [];
+      //console.log("bigfive = " + bigfive[0] + " " + bigfive[1]+ " "+ bigfive[2] + " "+ bigfive[3] +" "+ bigfive[4]+"\\n");
+      for(i=0;i<16; i++){
+      ////console.log("bigfive = " + bigfive[0] + " " + bigfive[1]+ " "+ bigfive[2] + " "+ bigfive[3] +" "+ bigfive[4]+"\\n");
+      ////console.log("rule = " + arrope[i] + " " + arrcon[i]+ " "+ arrext[i] + " "+ arragr[i] +" "+ arrneu[i]+"\\n");
+      distance = 0, sum = 0;
+      for(j=0; j < 5; j++){
+      //----------------------------------------------------
+      if(j == 0){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrope[m];
+      }
+      }
+      if(j == 1){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrcon[m];
+      }
+      }
+      if(j == 2){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrext[m];
+      }
+      }
+      if(j == 3){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arragr[m];
+      }
+      }
+      if(j == 4){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrneu[m];
+      }
+      }
+      //------------------------------------------------------
+      abs = bigfive[j] - bigf[i];
+      if(abs < 0){
+      abs = abs * -1;
+      }
+      //console.log("bigfive["+ j + "] = " + bigfive[j] + "bigf[" + i + "] = " + bigf[i] + "abs = " + abs +"\\n");
+      sum = sum + abs;
+      }
+      //console.log("sum = "+sum  +"small = "+small + "\\n");
+      if(sum < small){
+      small = sum;
+      irule = i;
+      }
+      }
+      var genre = "none";
+      if(irule == 0){   genre = "action"; }
+      if(irule == 1){   genre = "adventure"; }
+      if(irule == 2){   genre = "animation"; }
+      if(irule == 3){   genre = "cartoon"; }
+      if(irule == 4){   genre = "comedy"; }
+      if(irule == 5){   genre = "cult"; }
+      if(irule == 6){   genre = "drama"; }
+      if(irule == 7){   genre = "foreign"; }
+      if(irule == 8){   genre = "horror"; }
+      if(irule == 9){   genre = "independent"; }
+      if(irule == 10){  genre = "noir"; }
+      if(irule == 11){  genre = "parody"; }
+      if(irule == 12){  genre = "romance"; }
+      if(irule == 13){  genre = "science_fiction"; }
+      if(irule == 14){  genre = "tragedy"; }
+      if(irule == 15){  genre = "war"; }
+      console.log("movie genre = "+ genre +"\\n");
+      movie_genre_p = genre;
+      }
+      //---------------------------------------MUSIC----------------------------------
+      if(music == 1){
+      var chars = 1;
+      var arr = [];
+      var label = -1;
+      var arrope = [4.08, 4.10, 3.79, 3.79, 3.82, 4.06, 4.03, 3.97, 3.86, 3.79, 3.69, 3.74, 4.00, 3.93, 3.94, 4.00];
+      var arrcon = [3.48, 3.50, 3.55, 3.50, 3.49, 3.26, 3.55, 3.30, 3.51, 3.41, 3.54, 3.33, 3.43, 3.37, 3.55, 3.32];
+      var arrext = [3.55, 3.39, 3.64, 3.66, 3.75, 3.51, 3.61, 3.37, 3.57, 3.55, 3.63, 3.69, 3.66, 3.48, 3.80, 3.51];
+      var arragr = [3.57, 3.54, 3.65, 3.60, 3.52, 3.49, 3.60, 3.34, 3.65, 3.55, 3.57, 3.43, 3.53, 3.51, 3.55, 3.50];
+      var arrneu = [2.71, 2.77, 2.78, 2.79, 2.66, 2.98, 2.64, 2.87, 2.75, 2.77, 2.71, 2.67, 2.67, 2.83, 2.62, 2.81];
+      var bigfive = [];
+      var arraylength;
+      arraylength = arrope.length;
+      var i= 0, j = 0, k = 0, l = 0, m = 0;
+      for(k = 0; k < 5; k++){
+      if(k == 0){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrope[m];
+      chars = ope;
+      }
+      }
+      if(k == 1){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrcon[m];
+      chars = con;
+      }
+      }
+      if(k == 2){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrext[m];
+      chars = ext;
+      }
+      }
+      if(k == 3){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arragr[m];
+      chars = agr;
+      }
+      }
+      if(k == 4){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrneu[m];
+      chars = neu;
+      }
+      }
+      var diff = 10, d = 10;
+      //////console.log("Bigfive = \\n");
+      for(var i = 0; i < arraylength; i++){
+      d = chars - arr[i];
+      if(d < 0){
+      d = -1 * d;
+      }
+      if(d < diff){
+      diff = d;
+      //label = ope + i;   // name label ope+0/1/2-----
+      label = i;
+      }
+      }
+      bigfive.push(arr[label]);
+      //////console.log(chars +" " + arr[label] + "\\n");
+      }
+      var distance = 0, small = 256, irule = 0;
+      var i, j;
+      var bigf = [];
+      //console.log("bigfive = " + bigfive[0] + " " + bigfive[1]+ " "+ bigfive[2] + " "+ bigfive[3] +" "+ bigfive[4]+"\\n");
+      for(i=0;i<16; i++){
+      ////console.log("bigfive = " + bigfive[0] + " " + bigfive[1]+ " "+ bigfive[2] + " "+ bigfive[3] +" "+ bigfive[4]+"\\n");
+      ////console.log("rule = " + arrope[i] + " " + arrcon[i]+ " "+ arrext[i] + " "+ arragr[i] +" "+ arrneu[i]+"\\n");
+      distance = 0, sum = 0;
+      for(j=0; j < 5; j++){
+      //----------------------------------------------------
+      if(j == 0){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrope[m];
+      }
+      }
+      if(j == 1){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrcon[m];
+      }
+      }
+      if(j == 2){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrext[m];
+      }
+      }
+      if(j == 3){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arragr[m];
+      }
+      }
+      if(j == 4){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrneu[m];
+      }
+      }
+      //------------------------------------------------------
+      abs = bigfive[j] - bigf[i];
+      if(abs < 0){
+      abs = abs * -1;
+      }
+      //console.log("bigfive["+ j + "] = " + bigfive[j] + "bigf[" + i + "] = " + bigf[i] + "abs = " + abs +"\\n");
+      sum = sum + abs;
+      }
+      //console.log("sum = "+sum  +"small = "+small + "\\n");
+      if(sum < small){
+      small = sum;
+      irule = i;
+      }
+      }
+      var genre = "none";
+      if(irule == 0){   genre = "blues"; }
+      if(irule == 1){   genre = "classical"; }
+      if(irule == 2){   genre = "country"; }
+      if(irule == 3){   genre = "dance"; }
+      if(irule == 4){   genre = "hip_hop"; }
+      if(irule == 5){   genre = "indie"; }
+      if(irule == 6){   genre = "jazz"; }
+      if(irule == 7){   genre = "metal"; }
+      if(irule == 8){   genre = "oldies"; }
+      if(irule == 9){   genre = "pop"; }
+      if(irule == 10){  genre = "r&b"; }
+      if(irule == 11){  genre = "rap"; }
+      if(irule == 12){  genre = "reggae"; }
+      if(irule == 13){  genre = "rock"; }
+      if(irule == 14){  genre = "salsa"; }
+      if(irule == 15){  genre = "techno"; }
+      console.log("music genre = "+ genre +"\\n");
+      music_genre_p = genre;
+      }
+      //--------------------------------------BOOKS---------------------------
+      if(books == 1){
+      var chars = 1;
+      var arr = [];
+      var label = -1;
+      var arrope = [4.06, 3.83, 3.81, 4.02, 4.04, 4.00, 3.90, 3.91, 4.01, 4.16, 3.89, 3.81, 4.13, 4.03, 3.85, 3.87];
+      var arrcon = [3.28, 3.44, 3.36, 3.66, 3.34, 3.41, 3.40, 3.53, 3.51, 3.34, 3.52, 3.41, 3.42, 3.50, 3.54, 3.44];
+      var arrext = [3.38, 3.43, 3.53, 3.57, 3.27, 3.42, 3.62, 3.51, 3.43, 3.38, 3.49, 3.68, 3.25, 3.42, 3.51, 3.33];
+      var arragr = [3.47, 3.47, 3.67, 3.66, 3.54, 3.55, 3.56, 3.61, 3.62, 3.54, 3.60, 3.55, 3.51, 3.62, 3.59, 3.23];
+      var arrneu = [2.86, 2.99, 2.84, 2.74, 2.87, 2.82, 2.78, 2.76, 2.76, 2.94, 2.85, 2.83, 2.81, 2.83, 2.76, 2.80];
+      var bigfive = [];
+      var arraylength;
+      arraylength = arrope.length;
+      var i= 0, j = 0, k = 0, l = 0, m = 0;
+      for(k = 0; k < 5; k++){
+      if(k == 0){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrope[m];
+      chars = ope;
+      }
+      }
+      if(k == 1){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrcon[m];
+      chars = con;
+      }
+      }
+      if(k == 2){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrext[m];
+      chars = ext;
+      }
+      }
+      if(k == 3){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arragr[m];
+      chars = agr;
+      }
+      }
+      if(k == 4){
+      for(m = 0; m < arraylength; m++){
+      arr[m] = arrneu[m];
+      chars = neu;
+      }
+      }
+      var diff = 10, d = 10;
+      //////console.log("Bigfive = \\n");
+      for(var i = 0; i < arraylength; i++){
+      d = chars - arr[i];
+      if(d < 0){
+      d = -1 * d;
+      }
+      if(d < diff){
+      diff = d;
+      //label = ope + i;   // name label ope+0/1/2-----
+      label = i;
+      }
+      }
+      bigfive.push(arr[label]);
+      //////console.log(chars +" " + arr[label] + "\\n");
+      }
+      var distance = 0, small = 256, irule = 0;
+      var i, j;
+      var bigf = [];
+      //console.log("bigfive = " + bigfive[0] + " " + bigfive[1]+ " "+ bigfive[2] + " "+ bigfive[3] +" "+ bigfive[4]+"\\n");
+      for(i=0;i<16; i++){
+      ////console.log("bigfive = " + bigfive[0] + " " + bigfive[1]+ " "+ bigfive[2] + " "+ bigfive[3] +" "+ bigfive[4]+"\\n");
+      ////console.log("rule = " + arrope[i] + " " + arrcon[i]+ " "+ arrext[i] + " "+ arragr[i] +" "+ arrneu[i]+"\\n");
+      distance = 0, sum = 0;
+      for(j=0; j < 5; j++){
+      //----------------------------------------------------
+      if(j == 0){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrope[m];
+      }
+      }
+      if(j == 1){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrcon[m];
+      }
+      }
+      if(j == 2){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrext[m];
+      }
+      }
+      if(j == 3){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arragr[m];
+      }
+      }
+      if(j == 4){
+      for(m = 0; m < arraylength; m++){
+      bigf[m] = arrneu[m];
+      }
+      }
+      //------------------------------------------------------
+      abs = bigfive[j] - bigf[i];
+      if(abs < 0){
+      abs = abs * -1;
+      }
+      //console.log("bigfive["+ j + "] = " + bigfive[j] + "bigf[" + i + "] = " + bigf[i] + "abs = " + abs +"\\n");
+      sum = sum + abs;
+      }
+      //console.log("sum = "+sum  +"small = "+small + "\\n");
+      if(sum < small){
+      small = sum;
+      irule = i;
+      }
+      }
+      var genre = "none";
+      if(irule == 0){   genre = "comic"; }
+      if(irule == 1){   genre = "crime"; }
+      if(irule == 2){   genre = "drama"; }
+      if(irule == 3){   genre = "educational"; }
+      if(irule == 4){   genre = "fantasy"; }
+      if(irule == 5){   genre = "fiction"; }
+      if(irule == 6){   genre = "humour"; }
+      if(irule == 7){   genre = "mystery"; }
+      if(irule == 8){   genre = "non_fiction"; }
+      if(irule == 9){   genre = "poetry"; }
+      if(irule == 10){  genre = "romance"; }
+      if(irule == 11){  genre = "scary"; }
+      if(irule == 12){  genre = "science_fiction"; }
+      if(irule == 13){  genre = "self_help"; }
+      if(irule == 14){  genre = "thriller"; }
+      if(irule == 15){  genre = "war"; }
+      console.log("books genre = "+ genre +"\\n");
+      book_genre_p = genre;
+      }
+
+    
+
+doctype html
+html(lang="en")
+  head
+    include _head.jade
+  body
+    include _navbar.jade
+    main
+      include about/about_content.html
+    include _footer.html
+    include _scripts.html
